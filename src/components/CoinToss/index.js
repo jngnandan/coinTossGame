@@ -8,7 +8,7 @@ class CoinToss extends Component {
         super(event);
 
         this.state = {
-            result: "heads",
+            result: 0,
             total: 0,
             heads: 0,
             tails: 0,
@@ -17,18 +17,21 @@ class CoinToss extends Component {
 
     clickToss = () => {
         const { result, total, heads, tails } = this.state
+        let toss = Math.floor(Math.random() * 2)
+
         this.setState({
             total: total + 1
         })
-        result === "heads" ?
+        toss === 0 ?
             this.setState({
-                result: "tails",
+                result: 1,
                 heads: heads + 1
             }) :
             this.setState({
-                result: "heads",
+                result: 0,
                 tails: tails + 1
             })
+        console.log(toss)
     }
 
     render() {
@@ -39,7 +42,7 @@ class CoinToss extends Component {
                     <h1 className="text-3xl font-bold text-gray-800">Coin Toss Game</h1>
                     <p>Heads (or) Tails</p>
 
-                    {result === "heads" ? <img alt="toss result" className="h-48 w-48" src="https://assets.ccbp.in/frontend/react-js/heads-img.png" /> :
+                    {result === 0 ? <img alt="toss result" className="h-48 w-48" src="https://assets.ccbp.in/frontend/react-js/heads-img.png" /> :
                         <img alt="tails" className="h-48 w-48" src="https://assets.ccbp.in/frontend/react-js/tails-img.png" />}
 
                     <button onClick={this.clickToss} className="m-3 py-2 px-6 text-white font-bold rounded shadow bg-gradient-to-r from-orange-400 to-yellow-400">Toss Coin</button>
